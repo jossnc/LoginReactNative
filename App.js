@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginScreen from './screen/LoginScreen'
+import DashboardScreen from './screen/DashboardScreen';
+import TaskDirectoryScreen from './screen/TaskDirectoryScreen';
+import RegisterScreen from './screen/RegisterScreen';
 
-export default function App() {
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+        name="Bienvendio" 
+        component={LoginScreen} 
+        options={{
+          headerStyle: { backgroundColor: '#3FA763' },
+          headerTintColor: 'white', // Cambiar el color del encabezado aquí
+        }}
+        />
+        <Stack.Screen
+          name="Registro" 
+          component={RegisterScreen} 
+          options={{
+            headerStyle: { backgroundColor: '#3FA763' },
+            headerTintColor: 'white', // Cambiar el color del encabezado aquí
+          }}
+        />
+        <Stack.Screen name="Dashboard" component={DashboardScreen}  options={{
+          headerStyle: { backgroundColor: '#3FA763' },
+          headerTintColor: 'white', // Cambiar el color del encabezado aquí
+        }}/>
+        <Stack.Screen name="TaskDirectory" component={TaskDirectoryScreen} options={{
+          headerStyle: { backgroundColor: '#3FA763' },
+          headerTintColor: 'white', // Cambiar el color del encabezado aquí
+        }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
